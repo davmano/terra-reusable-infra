@@ -42,7 +42,7 @@ module "s3" {
         Effect    = "Allow"
         Principal = { AWS = module.iam.role_arn }
         Action    = ["s3:GetObject", "s3:ListBucket"]
-        Resource  = ["arn:aws:s3:::${var.environment}-${var.s3_bucket_name}/*"]
+        Resource  = ["${module.s3.bucket_arn}/*", module.s3.bucket_arn]
       }
     ]
   }
@@ -55,8 +55,8 @@ module "ec2" {
   environment    = var.environment
   vpc_id         = module.vpc.vpc_id
   subnet_ids     = module.vpc.private_subnet_ids # Deploy in private subnets for security
-  ami_id         = var.ec2_ami_id
+ # ami_id         = var.ec2_ami_id
   instance_type  = var.ec2_instance_type
   instance_count = var.ec2_instance_count
-  iam_role_name  = module.iam.role_arn
+  instance_profile_name = module.iam.instance_profile_name
 }

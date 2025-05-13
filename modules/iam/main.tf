@@ -23,3 +23,7 @@ resource "aws_iam_role_policy" "main" {
   role   = aws_iam_role.main.id
   policy = jsonencode(var.policy_document)
 }
+resource "aws_iam_instance_profile" "main" {
+  name = "${var.environment}-${var.role_name}"
+  role = aws_iam_role.main.name
+}

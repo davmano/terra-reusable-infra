@@ -19,10 +19,10 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "ami_id" {
-  description = "AMI ID for the EC2 instance"
-  type        = string
-}
+#variable "ami_id" {
+ # description = "AMI ID for the EC2 instance"
+  #type        = string
+#}
 
 variable "instance_type" {
   description = "EC2 instance type"
@@ -36,7 +36,7 @@ variable "instance_count" {
   default     = 1
 }
 
-variable "iam_role_name" {
+variable "instance_profile_name" {
   description = "Name of the IAM role for the instance"
   type        = string
 }
